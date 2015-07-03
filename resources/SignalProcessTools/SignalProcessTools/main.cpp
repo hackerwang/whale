@@ -1,13 +1,13 @@
 #include "SignalProcessTools.h"
 
-string wavName = "e:/6010.wav";
+string wavName = "F:\\Git\\whale\\resources\\whalesong.wav";
 void testIO()
 {
 	SignalProcessTools tools;
 	// make sure the file name here is the absolute path
 	// or matlab will try to find the .wav file at the root path of MATLAB
 	WaveData wave = tools.waveRead(wavName);
-	tools.waveWrite("e:/haha.wav", wave);
+	tools.waveWrite("F:\\Git\\whale\\resources\\output.wav", wave);
 }
 /*
 *	if you need to observe part of the wave:
@@ -45,6 +45,6 @@ void testSpec()
 int main()
 {
 	//testIO();
-	//testPlot();
-	testSpec();
+	testPlot();
+	//testSpec();
 }

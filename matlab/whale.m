@@ -1,0 +1,13 @@
+[y,fs]=wavread('F:\\Git\\whale\\resources\\whalesong.wav');
+sound(y,fs)
+time=(1:length(y))/fs;
+figure(1);
+plot(time,y);
+axis([0,0.38,-1,1]);
+title('whalesong完整波形');
+xlabel('time/s');
+figure(2);
+x=1.05e4:1.1e4;
+plot(x,y(1.05e4:1.1e4))
+title('whalesong局部波形');
+xlabel('采样点');
