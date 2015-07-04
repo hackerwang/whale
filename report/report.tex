@@ -110,5 +110,57 @@
         
     \section{多变频信号模拟}
         \subsection{认真观察whalesong的时频图，思考什么结构的合成信号能更好的模拟它}
+            根据时频图中的功率分布，选取中心频率位于10.875kHz、5.5kHz、8.19kHz的三条谱线，作为高频谐波加入到合成的音频中。
+            
+        \subsection{如果允许用多个包络和频率都随时间变化的单频信号模拟白鲸歌声，请描述这些频率变化的特征}
+            在上题2.8kHz基频的基础上加入下面的三个谐波分量：
+            \subsubsection*{10.875kHz分量}
+                12000采样点以后频率由10.875kHz线性减小至8.69kHz。
+            \subsubsection*{5.5kHz分量}
+                4000采样点以前频率由5.8kHz线性较小至5.5kHz，12000采样点以后频率由5.5kHz线性减小至4.88kHz。
+            \subsubsection*{8.19kHz分量}
+                4000采样点以前频率由6.25kHz二次增加至8.19kHz，12000采样点以后频率有8.19kHz线性减小至5.94kHz。
+            
+            对基频和上述四个谐波分量，包络变化与第2题相同，合成一个音频时，振幅比例为0.8、0.1、0.05、0.05。
+            
+        \subsection{用上题结果合成一个多变频信号，绘制波形时频图，昕昕声音，解释和白鲸的歌声有何异同}
+            合成音频波形如下图所示：
+            \begin{figure}[htb]
+                \centering
+                \subfloat[完整波形]
+                {
+                    \label{fig:synmulti-1}
+                    \includegraphics[width=7cm]{figure10.png}
+                }
+                \hspace{10pt}
+                \subfloat[局部波形]
+                {
+                    \label{fig:synmulti-2}
+                    \includegraphics[width=7cm]{figure11.png}
+                }
+                \caption{synmulti波形}
+                \label{fig:synmulti}
+            \end{figure}
+
+            时频图：
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=9cm]{figure12.png}
+                \label{fig:synmulti-ft}\caption{synmulti时频图}
+            \end{figure}
+
+            现在合成的音频已经比较接近白鲸的叫声了。
+            
+        \subsection{将上述单频信号保存为synmulti.wav文件}
+        
+    \section{模拟混响效果}
+        \subsection{思考如何模拟混响效果}
+        
+        \subsection{使用CoolEdit处理上题的合成音，模拟混响效果，试昕结果，并保存为synmultireverb1.wav文件}
+            CoolEdit被Adobe公司收购后更名为Audition。
+        
+        \subsection{设计一个产生混响（产生回声）的滤波器，对上题的合成音进行处理，试昕结果，并保存为synmultireverb2.wav文件}
+        
+        \subsection{解释混响后的多变频声音和白鲸的歌声有何异同}
         
 \end{document} 

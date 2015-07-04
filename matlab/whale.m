@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%
-%% Original whalesong.wav
+%% Original whalesong
 %%%%%%%%%%%%%%%%%%%%
 %Read original wav file
 [y,fs]=wavread('F:\\Git\\whale\\resources\\whalesong.wav');
@@ -75,3 +75,31 @@ wavwrite(y2,fs,'F:\\Git\\whale\\resources\\synsingle.wav');
 %%%%%%%%%%%%%%%%%%%%
 %% Mutiple variable frequency
 %%%%%%%%%%%%%%%%%%%%
+%Generate 10.875kHz
+y3_1(1:11999)=sin(2*pi*10875*time(1:11999));
+y3_1(12000:16572)=chirp(time(12000:16572),16609,16572/fs,8690,'linear',245);
+%Generate 5.5kHz
+y3_2(4001:11999)=sin(2*pi*5500*time(4001:11999));
+y3_2(1:4000)=chirp(time(1:4000),5800,4000/fs,5500,'linear',53);
+y3_2(12000:16572)=chirp(time(12000:16572),7127,16572/fs,4880,'linear',130);
+%Generate 8.19kHz
+y3_3(4001:11999)=sin(2*pi*8190*time(4001:11999));
+y3_3(1:4000)=chirp(time(1:4000),6250,4000/fs,8190,'quadratic',-45,'convex');
+y3_3(12000:16572)=chirp(time(12000:16572),14094,16572/fs,5940,'linear',175);
+%Compose
+y3=0.8*y2+0.1*a2.*y3_1+0.05*a2.*y3_2+0.05*a2.*y3_3;
+%Plot waveform
+figure(9);
+plot(time,y3);
+axis([0,0.38,-1,1]);
+title('synmulti完整波形');
+xlabel('time/s');
+figure(10);
+x=3500:4500;
+plot(x,y3(3500:4500))
+title('synmulti局部波形');
+xlabel('采样点');
+%Plot STFT
+figure(11);
+spectrogram(y3,h,NOverlap,NFFT,fs,'yaxis');
+wavwrite(y3,fs,'F:\\Git\\whale\\resources\\synmulti.wav');
