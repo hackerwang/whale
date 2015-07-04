@@ -45,6 +45,6 @@ void testSpec()
 int main()
 {
 	//testIO();
-	testPlot();
-	//testSpec();
+	//testPlot();
+	testSpec();
 }
