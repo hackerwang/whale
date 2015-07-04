@@ -149,13 +149,13 @@
                 \label{fig:synmulti-ft}\caption{synmulti时频图}
             \end{figure}
 
-            现在合成的音频已经比较接近白鲸的叫声了。和白鲸的叫声相比，合成的音频听起来清晰、悦耳，而原始音频带有混响，显得有些模糊。
+            现在合成的音频已经比较接近白鲸的叫声了。和白鲸的叫声相比，合成的音频听起来非常清晰，而原始音频带有混响，略有模糊感。
 
         \subsection{将上述单频信号保存为synmulti.wav文件}
 
     \section{模拟混响效果}
         \subsection{思考如何模拟混响效果}
-            海洋馆中的小白鲸处于一个巨大的房间样空间中，混响效果较为明显，在Audition的“卷积混响”设置中，“房间大小”应该较大。另外，经过水反射的高频分量衰减大于低频分量，因此混响设置中高频衰减也应大于低频衰减。
+            海洋馆中的小白鲸处于一个巨大的房间样空间中，混响效果较为明显，在Audition的“卷积混响”设置中，“房间大小”应该较大。另外，白鲸叫声悦耳，因此混响设置中高频衰减较小，低频衰减较大。
 
         \subsection{使用CoolEdit处理上题的合成音，模拟混响效果，试听结果，并保存为synmultireverb1.wav文件}
             CoolEdit被Adobe公司收购后更名为Audition。这里使用Audition CC 2014对上题合成的音频进行处理。
@@ -167,30 +167,42 @@
                 \label{fig:reverb1-1}\caption{Audition混响设置}
             \end{figure}
             
-            为了使合成的音频听起来流畅，再加入和声：
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=9cm]{figure14.png}
-                \label{fig:reverb1-2}\caption{Audition和声设置}
-            \end{figure}
-            
             处理后的音频波形和时频图如下：
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=10cm]{figure15.png}
-                \label{fig:reverb1-3}\caption{Audition混响波形}
+                \includegraphics[width=10cm]{figure14.png}
+                \label{fig:reverb1-2}\caption{Audition混响波形}
             \end{figure}
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=10cm]{figure16.png}
-                \label{fig:reverb1-4}\caption{Audition混响时频图}
+                \includegraphics[width=10cm]{figure15.png}
+                \label{fig:reverb1-3}\caption{Audition混响时频图}
             \end{figure}
             
-            合成音频和白鲸的叫声非常相近。
-            
         \subsection{设计一个产生混响（产生回声）的滤波器，对上题的合成音进行处理，试听结果，并保存为synmultireverb2.wav文件}
+            如下图所示，g(0<g<1)为反馈增益：
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=10cm]{figure16.png}
+                \label{fig:reverb2-1}\caption{全通滤波器混响模型}
+            \end{figure}
             
+            该系统的输入输出方程为：
+            $$y(n)=-gx(n)+x(n-m)+gy(n-m)$$
+            传递函数：
+            $$H(z)=\frac{z^{-m}-g}{1-gz^{-m}}$$
+            由于$|H(z)|=1$，这是一个全通滤波器混响模型。
+            
+            取$m=250, g=0.8$，作用于上题合成的音频后，时频图如下图所示：
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=10cm]{figure17.png}
+                \label{fig:reverb2-2}\caption{Matlab混响时频图}
+            \end{figure}
+            
+            通过时频图可以确认混响（回声）的存在，但是回声密度不高，混响效果不明显，实际听到音频也是如此。
             
         \subsection{解释混响后的多变频声音和白鲸的歌声有何异同}
-
+            混响后的音频和白鲸的叫声非常相近，但是听起来没有原始音频明亮。这是因为合成音频的过程中，仅选取了能量分布较为集中的3个高频分量，忽略了其他高频分量。高频分量的缺失会使声音听起来略显低沉。
+            
 \end{document} 
