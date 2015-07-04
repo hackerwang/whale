@@ -88,6 +88,7 @@ y3_3(1:4000)=chirp(time(1:4000),6250,4000/fs,8190,'quadratic',-45,'convex');
 y3_3(12000:16572)=chirp(time(12000:16572),14094,16572/fs,5940,'linear',175);
 %Compose
 y3=0.8*y2+0.1*a2.*y3_1+0.05*a2.*y3_2+0.05*a2.*y3_3;
+sound(y3,fs);
 %Plot waveform
 figure(9);
 plot(time,y3);
@@ -103,3 +104,15 @@ xlabel('²ÉÑùµã');
 figure(11);
 spectrogram(y3,h,NOverlap,NFFT,fs,'yaxis');
 wavwrite(y3,fs,'F:\\Git\\whale\\resources\\synmulti.wav');
+
+%%%%%%%%%%%%%%%%%%%%
+%% Reverberation
+%%%%%%%%%%%%%%%%%%%%
+m=250; g=0.8;
+a(1:m+1)=[1;zeros(m-1,1);-g];
+b(1:m+1)=[-g;zeros(m-1,1);1];
+y4=filter(b,a,y3);
+sound(y4,fs);
+figure(12);
+spectrogram(y4,h,NOverlap,NFFT,fs,'yaxis');
+wavwrite(y4,fs,'F:\\Git\\whale\\resources\\synmultireverb2.wav');
