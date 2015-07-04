@@ -29,13 +29,13 @@
                 \caption{whalesong波形}
                 \label{fig:origin}
             \end{figure}
-            
+
             将波形和实际的音频进行比较，可以发现波形振幅的表示声音的响度，波形的振动频率表示声音的频率。
 
         \subsection{如果要用一个单频信号模拟上述声音，请计算该信号的频率}
             由局部波形图计算，采样点$1.05\times10^4$ $\sim$ $1.095\times10^4$之间共有28个周期，采样频率44.1kHz，故单频信号频率：
             $$f=\frac{1}{\frac{(1.095-1.05)\times10^4}{44.1\times10^4\times28}}Hz=2744Hz$$
-            
+
         \subsection{由计算得到的频率合成一个单频信号，绘制波形，听听声音，解释和白鲸的歌声有何异同}
             合成音频波形如下图所示：
             \begin{figure}[htb]
@@ -54,11 +54,11 @@
                 \caption{synfixed波形}
                 \label{fig:synfixed}
             \end{figure}
-            
+
             单频模拟出的声音和白鲸的叫声差别较大，单频信号听起来干涩、单薄、缺乏变化，而白鲸的歌声较为饱满、通透。
-            
+
         \subsection{将上述单频信号保存为synfixed.wav文件}
-    
+
     \section{变频信号模拟}
         \subsection{读入whalesong.wav文件，绘制时频图，解释其含义}
             \begin{figure}[htb]
@@ -66,18 +66,18 @@
                 \includegraphics[width=9cm]{figure5.png}
                 \label{fig:originft-1}\caption{Matlab绘制的whalesong时频图}
             \end{figure}
-            
+
             \begin{figure}[!htb]
                 \centering
                 \includegraphics[width=10cm]{figure6.png}
                 \label{fig:originft-2}\caption{Audition绘制的whalesong时频图}
             \end{figure}
-            
+
             时频图中的颜色分布表示不同时间点上能量在频域的分布，颜色越量的区域能量越高。上图表明白鲸叫声的能量在频域主要分布在若干个频率附近。
-            
+
         \subsection{如果要用一个包络和频率都随时间变化的单频信号模拟上述声音，请描述该频率变化的特征}
             1$\sim$4000采样点频率由2.25kHz线性增加至2.8kHz，幅度由0.2线性增加至1；12000$\sim$16572采样点频率由2.8kHz线性降低至1.94kHz，幅度由1线性降低至0。
-            
+
         \subsection{用上题结果合成一个变频信号，绘制波形和时频图，听听声音，解释和白鲸的歌声有何异同}
             合成音频波形如下图所示：
             \begin{figure}[htb]
@@ -96,22 +96,22 @@
                 \caption{synsingle波形}
                 \label{fig:synsingle}
             \end{figure}
-            
+
             时频图：
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=9cm]{figure9.png}
                 \label{fig:synsingle-ft}\caption{synsingle时频图}
             \end{figure}
-            
+
             现在合成的音频在响度、基频变化等方面已经比较接近白鲸的叫声了，但是由于缺少高频分量，声音显得单薄、苍白。
-            
+
         \subsection{将上述变频信号保存为synsingle.wav文件}
-        
+
     \section{多变频信号模拟}
         \subsection{认真观察whalesong的时频图，思考什么结构的合成信号能更好的模拟它}
             根据时频图中的功率分布，选取中心频率位于10.875kHz、5.5kHz、8.19kHz的三条谱线，作为高频谐波加入到合成的音频中。
-            
+
         \subsection{如果允许用多个包络和频率都随时间变化的单频信号模拟白鲸歌声，请描述这些频率变化的特征}
             在上题2.8kHz基频的基础上加入下面的三个谐波分量：
             \subsubsection*{10.875kHz分量}
@@ -119,11 +119,11 @@
             \subsubsection*{5.5kHz分量}
                 4000采样点以前频率由5.8kHz线性较小至5.5kHz，12000采样点以后频率由5.5kHz线性减小至4.88kHz。
             \subsubsection*{8.19kHz分量}
-                4000采样点以前频率由6.25kHz二次增加至8.19kHz，12000采样点以后频率有8.19kHz线性减小至5.94kHz。
-            
-            对基频和上述四个谐波分量，包络变化与第2题相同，合成一个音频时，振幅比例为0.8、0.1、0.05、0.05。
-            
-        \subsection{用上题结果合成一个多变频信号，绘制波形时频图，昕昕声音，解释和白鲸的歌声有何异同}
+                4000采样点以前频率由6.25kHz\emph{二次}增加至8.19kHz，12000采样点以后频率有8.19kHz线性减小至5.94kHz。
+
+            对基频和上述3个谐波分量，包络变化与第2题相同。当它们合成为一个音频时，振幅比例为0.8、0.1、0.05、0.05。
+
+        \subsection{用上题结果合成一个多变频信号，绘制波形和时频图，听听声音，解释和白鲸的歌声有何异同}
             合成音频波形如下图所示：
             \begin{figure}[htb]
                 \centering
@@ -149,18 +149,48 @@
                 \label{fig:synmulti-ft}\caption{synmulti时频图}
             \end{figure}
 
-            现在合成的音频已经比较接近白鲸的叫声了。
-            
+            现在合成的音频已经比较接近白鲸的叫声了。和白鲸的叫声相比，合成的音频听起来清晰、悦耳，而原始音频带有混响，显得有些模糊。
+
         \subsection{将上述单频信号保存为synmulti.wav文件}
-        
+
     \section{模拟混响效果}
         \subsection{思考如何模拟混响效果}
-        
-        \subsection{使用CoolEdit处理上题的合成音，模拟混响效果，试昕结果，并保存为synmultireverb1.wav文件}
-            CoolEdit被Adobe公司收购后更名为Audition。
-        
-        \subsection{设计一个产生混响（产生回声）的滤波器，对上题的合成音进行处理，试昕结果，并保存为synmultireverb2.wav文件}
-        
+            海洋馆中的小白鲸处于一个巨大的房间样空间中，混响效果较为明显，在Audition的“卷积混响”设置中，“房间大小”应该较大。另外，经过水反射的高频分量衰减大于低频分量，因此混响设置中高频衰减也应大于低频衰减。
+
+        \subsection{使用CoolEdit处理上题的合成音，模拟混响效果，试听结果，并保存为synmultireverb1.wav文件}
+            CoolEdit被Adobe公司收购后更名为Audition。这里使用Audition CC 2014对上题合成的音频进行处理。
+            
+            根据前面的分析，混响参数设置如下：
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=9cm]{figure13.png}
+                \label{fig:reverb1-1}\caption{Audition混响设置}
+            \end{figure}
+            
+            为了使合成的音频听起来流畅，再加入和声：
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=9cm]{figure14.png}
+                \label{fig:reverb1-2}\caption{Audition和声设置}
+            \end{figure}
+            
+            处理后的音频波形和时频图如下：
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=10cm]{figure15.png}
+                \label{fig:reverb1-3}\caption{Audition混响波形}
+            \end{figure}
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=10cm]{figure16.png}
+                \label{fig:reverb1-4}\caption{Audition混响时频图}
+            \end{figure}
+            
+            合成音频和白鲸的叫声非常相近。
+            
+        \subsection{设计一个产生混响（产生回声）的滤波器，对上题的合成音进行处理，试听结果，并保存为synmultireverb2.wav文件}
+            
+            
         \subsection{解释混响后的多变频声音和白鲸的歌声有何异同}
-        
+
 \end{document} 
