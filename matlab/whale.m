@@ -73,7 +73,7 @@ spectrogram(y2,h,NOverlap,NFFT,fs,'yaxis');
 wavwrite(y2,fs,'F:\\Git\\whale\\resources\\synsingle.wav');
 
 %%%%%%%%%%%%%%%%%%%%
-%% Mutiple variable frequency
+%% Multiple variable frequency
 %%%%%%%%%%%%%%%%%%%%
 %Generate 10.875kHz
 y3_1(1:11999)=sin(2*pi*10875*time(1:11999));
